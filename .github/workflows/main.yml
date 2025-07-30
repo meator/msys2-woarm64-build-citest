@@ -107,41 +107,41 @@ jobs:
         run: |
           echo "<!DOCTYPE html><head></head><body></body>" > repository/index.html
 
-      - name: Upload woarm64-msys2-repository
-        uses: actions/upload-pages-artifact@v3
-        with:
-          name: woarm64-msys2-repository
-          retention-days: 1
-          path: repository
+      # - name: Upload woarm64-msys2-repository
+      #   uses: actions/upload-pages-artifact@v3
+      #   with:
+      #     name: woarm64-msys2-repository
+      #     retention-days: 1
+      #     path: repository
 
-  deploy:
-    if: github.ref == 'refs/heads/main'
-    name: Deploy MSYS2 repository
-    needs: repository
-    runs-on: ubuntu-latest
+  # deploy:
+  #   if: github.ref == 'refs/heads/main'
+  #   name: Deploy MSYS2 repository
+  #   needs: repository
+  #   runs-on: ubuntu-latest
 
-    permissions:
-      contents: read
-      pages: write
-      id-token: write
+  #   permissions:
+  #     contents: read
+  #     pages: write
+  #     id-token: write
 
-    environment:
-      name: github-pages
-      url: ${{steps.deployment.outputs.page_url}}
+  #   environment:
+  #     name: github-pages
+  #     url: ${{steps.deployment.outputs.page_url}}
 
-    defaults:
-      run:
-        shell: bash {0}
+  #   defaults:
+  #     run:
+  #       shell: bash {0}
 
-    steps:
-      - name: Setup GitHub Pages
-        uses: actions/configure-pages@v4
+  #   steps:
+  #     - name: Setup GitHub Pages
+  #       uses: actions/configure-pages@v4
 
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
-        with:
-          artifact_name: woarm64-msys2-repository
+  #     - name: Deploy to GitHub Pages
+  #       id: deployment
+  #       uses: actions/deploy-pages@v4
+  #       with:
+  #         artifact_name: woarm64-msys2-repository
 
   check:
     name: Check MSYS2 repository
