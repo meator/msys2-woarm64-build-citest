@@ -21,24 +21,24 @@ on:
         description: "Build cross-compilation MinGW toolchain"
         type: choice
         options:
-          - true
-          - false
+          - 'true'
+          - 'false'
         required: false
         default: 'true'
       build_native:
         description: "Build native MinGW toolchain"
         type: choice
         options:
-          - true
-          - false
+          - 'true'
+          - 'false'
         required: false
         default: 'true'
       build_native_with_native:
         description: "Build native MinGW toolchain with native MinGW toolchain"
         type: choice
         options:
-          - true
-          - false
+          - 'true'
+          - 'false'
         required: false
         default: 'true'
 
@@ -60,10 +60,7 @@ jobs:
 
   repository:
     name: Create MSYS2 repository
-    needs: [
-      mingw-cross-toolchain,
-      mingw-native-toolchain
-    ]
+    needs: [mingw-cross-toolchain, mingw-native-toolchain]
     runs-on: windows-latest
 
     defaults:
@@ -142,8 +139,3 @@ jobs:
   #       uses: actions/deploy-pages@v4
   #       with:
   #         artifact_name: woarm64-msys2-repository
-
-  check:
-    name: Check MSYS2 repository
-    needs: deploy
-    uses: ./.github/workflows/check-repository.yml
